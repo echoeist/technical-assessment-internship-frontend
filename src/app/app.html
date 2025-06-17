@@ -27,61 +27,107 @@
   </div>
 </nav>
 
-<!-- TODO Task 2: Responsive Card Grid using Bootstrap Grid -->
-<div class="container mt-3 px-2" *ngIf="activeTab === 'home'">
-  <h1 class="text-center">Welcome to Softinn: Your Hotel’s Best Partner!</h1>
-  <div class="row mt-4">
-    <div class="col-md-4 mb-3" *ngFor="let card of cards">
-      <div class="card h-100">
-        <!-- Use Bootstrap ratio and object-fit for consistent image sizes -->
-        <div class="ratio ratio-4x3">
-          <img [src]="card.image" class="card-img-top object-fit-cover" [alt]="card.title">
-        </div>
-        <div class="card-body">
-          <h6 class="card-title">{{ card.title }}</h6>
-          <p class="card-text">{{ card.text }}</p>
-          <a [href]="card.link" class="btn btn-primary" target="_blank">Learn More</a>
+<!-- TODO Task 5: SPA Tabs with *ngIf to switch content -->
+<div class="container mt-2 px-2">
+  <!-- Home Tab Content -->
+  <div *ngIf="activeTab === 'home'">
+    <h1 class="text-center">Welcome to Softinn: Your Hotel’s Best Partner!</h1>
+
+    <!-- TODO Task 2: Responsive Card Grid with Bootstrap Grid -->
+    <div class="row mt-4">
+      <div class="col-md-4 mb-3" *ngFor="let card of cards">
+        <div class="card h-100">
+          <!-- Use Bootstrap ratio and object-fit for consistent image sizes -->
+          <div class="ratio ratio-4x3">
+            <img [src]="card.image" class="card-img-top object-fit-cover" [alt]="card.title">
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">{{ card.title }}</h6>
+            <p class="card-text">{{ card.text }}</p>
+            <a [href]="card.link" class="btn btn-primary" target="_blank">Learn More</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- TODO Task 3: Contact Form Fields (Angular + Bootstrap Form) -->
-<div class="container mt-3 px-2" *ngIf="activeTab === 'contact'">
+  <!-- About Tab Content -->
+  <div *ngIf="activeTab === 'about'" class="fs-6">
+    <h1 class="text-center mb-4">About Softinn</h1>
+
+    <p><strong>Softinn</strong> is a hotel-tech startup based in Malacca, Malaysia. The mission is to <em>“Make I.T easy for hoteliers.”</em> Softinn provides cloud‑based solutions to help boutique hotels, resorts, and BnBs streamline operations and increase direct bookings — without the need for complex IT infrastructure.</p>
+
+    <h6 class="mt-4">Key Products 🎖</h6>
+    <ul>
+      <li><strong>Property Management System (PMS)</strong> – Manages daily front‑desk operations for small to mid-size hotels.</li>
+      <li><strong>Booking Engine</strong> – A commission-free tool for direct hotel bookings with local payment gateway integration.</li>
+      <li><strong>Hotel Kiosk</strong> – Enables 24/7 self check-in/out and walk-in bookings directly at the hotel.</li>
+      <li><strong>Channel Manager</strong> – Synchronizes room availability and rates with OTAs such as Booking.com, Agoda, and Airbnb.</li>
+      <li><strong>Website CMS</strong> – A simple content management system for hoteliers to manage their own hotel websites.</li>
+    </ul>
+
+    <h6 class="mt-4">Why Hoteliers Choose Softinn ✈️</h6>
+    <ul>
+      <li><strong>Cloud-Based Simplicity</strong> – No server setup required. Softinn was among the first boutique-hotel providers to integrate with Google Hotel Booking Link.</li>
+      <li><strong>Trusted by Many</strong> – Used by more than 1,200 hotels across Southeast Asia.</li>
+      <li><strong>Recognized Solutions</strong> – Recipient of the APICTA 2022 Merit Award in the Tourism & Hospitality category.</li>
+    </ul>
+
+    <p class="mt-4">Founded in 2013 by JeeShen Lee and Ken Lee, Softinn envisions connecting 100 subsystems to increase hotelier productivity throughout the Asia Pacific region.</p>
+
+    <p class="text-muted small">More details available at <a href="https://www.mysoftinn.com" target="_blank">www.mysoftinn.com</a></p>
+  </div>
+
+<!-- Contact Tab Content -->
+<div *ngIf="activeTab === 'contact'" class="px-2 py-2">
   <h1 class="text-center">Contact Us</h1>
   <form class="small" style="font-size: 0.8rem;">
-    
-    <!-- Name Field -->
+    <!-- Task 3: Contact Form Fields -->
     <div class="form-floating mb-2">
       <input type="text" class="form-control form-control-sm" id="name" placeholder="Your Name"
              style="height: 35px; font-size: 0.75rem;"
              [(ngModel)]="modalName" name="name">
       <label for="name" style="font-size: 0.75rem;">Name</label>
     </div>
-
-    <!-- Email Field -->
     <div class="form-floating mb-2">
       <input type="email" class="form-control form-control-sm" id="email" placeholder="Email"
              style="height: 35px; font-size: 0.75rem;"
              [(ngModel)]="modalEmail" name="email">
       <label for="email" style="font-size: 0.75rem;">Email</label>
     </div>
-
-    <!-- Message Field -->
     <div class="form-floating mb-2">
       <textarea class="form-control form-control-sm" id="message" style="height: 60px; font-size: 0.75rem;"
                 [(ngModel)]="modalMessage" name="message"></textarea>
       <label for="message" style="font-size: 0.75rem;">Message</label>
     </div>
-
-    <!-- Submit Button -->
     <div class="text-center mt-2">
+      <!-- Submit Button triggers modal -->
       <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#contactModal">
         Submit
       </button>
     </div>
   </form>
+
+  <!-- Contact Info Card -->
+  <div class="card mt-3 shadow-sm small mx-auto" style="max-width: 500px;">
+    <div class="card-body text-center px-2 py-2">
+      <h6 class="card-title mb-2">📍 Visit Softinn Today!</h6>
+      <p class="card-text mb-1" style="font-size: 0.7rem;">
+        No.1-1 & 1-2, Jalan Komersial,<br>
+        Jalan TAKH 3, Taman Ayer Keroh Heights,<br>
+        75450 Hang Tuah Jaya, Melaka
+      </p>
+      <p class="card-text mb-1" style="font-size: 0.7rem;"><b>Softinn Hotel PMS, Hotel Kiosk and Software</b></p>
+      <p class="card-text" style="font-size: 0.7rem;">
+        📞 +06-253 1592 &nbsp; |&nbsp; 🕘 9AM - 6PM &nbsp; |&nbsp; 📥 career&#64;mysoftinn.com
+      </p>
+
+      <a href="https://www.google.com/maps/dir//No.1-1+%26+1-2,+Jalan+Komersial,+Jalan+TAKH+3,+Taman+Ayer+Keroh+Heights,+75450+Hang+Tuah+Jaya,+Melaka/@2.253509,102.2081299,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x31d1e55e409bae17:0x4c2be0afc8095193!2m2!1d102.290531!2d2.2534575?entry=ttu"
+         class="btn btn-outline-secondary btn-sm mt-2" target="_blank">
+        View on Google Maps 🗺️
+      </a>
+    </div>
+  </div>
 </div>
 
 <!-- TODO Task 4: Modal to display submitted form values -->

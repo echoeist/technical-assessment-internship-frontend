@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })
-
 export class App {
   protected title = 'bootstrap-assessment-angular';
 
