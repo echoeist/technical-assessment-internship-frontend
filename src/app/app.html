@@ -1,4 +1,4 @@
-<!-- Task 1: Responsive Navigation Bar using Bootstrap classes -->
+<!-- TODO Task 1: Responsive Navigation Bar using Bootstrap classes -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Softinn Demo</a>
@@ -9,25 +9,31 @@
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav nav nav-pills" id="navTab" role="tablist">
+        <!-- Tab Buttons -->
         <li class="nav-item">
-          <button class="nav-link" type="button">Home</button>
+          <button class="nav-link" [ngClass]="{active: activeTab === 'home'}"
+                  (click)="setTab('home')" type="button">Home</button>
         </li>
         <li class="nav-item">
-          <button class="nav-link" type="button">About</button>
+          <button class="nav-link" [ngClass]="{active: activeTab === 'about'}"
+                  (click)="setTab('about')" type="button">About</button>
         </li>
         <li class="nav-item">
-          <button class="nav-link" type="button">Contact</button>
+          <button class="nav-link" [ngClass]="{active: activeTab === 'contact'}"
+                  (click)="setTab('contact')" type="button">Contact</button>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- Task 2: Responsive Card Grid using Bootstrap Grid -->
-<div class="container mt-4 px-2">
-  <div class="row">
+<!-- TODO Task 2: Responsive Card Grid using Bootstrap Grid -->
+<div class="container mt-3 px-2" *ngIf="activeTab === 'home'">
+  <h1 class="text-center">Welcome to Softinn: Your Hotel’s Best Partner!</h1>
+  <div class="row mt-4">
     <div class="col-md-4 mb-3" *ngFor="let card of cards">
       <div class="card h-100">
+        <!-- Use Bootstrap ratio and object-fit for consistent image sizes -->
         <div class="ratio ratio-4x3">
           <img [src]="card.image" class="card-img-top object-fit-cover" [alt]="card.title">
         </div>
@@ -39,4 +45,41 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- TODO Task 3: Contact Form Fields (Angular + Bootstrap Form) -->
+<div class="container mt-3 px-2" *ngIf="activeTab === 'contact'">
+  <h1 class="text-center">Contact Us</h1>
+  <form class="small" style="font-size: 0.8rem;">
+    <!-- Name Field -->
+    <div class="form-floating mb-2">
+      <input type="text" class="form-control form-control-sm" id="name" placeholder="Your Name"
+             style="height: 35px; font-size: 0.75rem;"
+             [(ngModel)]="modalName" name="name">
+      <label for="name" style="font-size: 0.75rem;">Name</label>
+    </div>
+
+    <!-- Email Field -->
+    <div class="form-floating mb-2">
+      <input type="email" class="form-control form-control-sm" id="email" placeholder="Email"
+             style="height: 35px; font-size: 0.75rem;"
+             [(ngModel)]="modalEmail" name="email">
+      <label for="email" style="font-size: 0.75rem;">Email</label>
+    </div>
+
+    <!-- Message Field -->
+    <div class="form-floating mb-2">
+      <textarea class="form-control form-control-sm" id="message" style="height: 60px; font-size: 0.75rem;"
+                [(ngModel)]="modalMessage" name="message"></textarea>
+      <label for="message" style="font-size: 0.75rem;">Message</label>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="text-center mt-2">
+      <button type="button" class="btn btn-success btn-sm" disabled>
+        Submit (Modal coming soon)
+      </button>
+
+    </div>
+  </form>
 </div>

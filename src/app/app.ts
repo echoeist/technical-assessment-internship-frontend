@@ -1,17 +1,21 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })
 export class App {
-  title = 'bootstrap-assessment-angular';
+  protected title = 'bootstrap-assessment-angular';
 
-  // Task 2: Card Grid Data
+  // Tracks the currently active tab (Home, About, Contact)
+  activeTab: string = 'home';
+
+  // Array of cards with consistent layout (image, title, text, link)
   cards = [
     {
       title: 'Hotel Self Check-In/Out Kiosk',
@@ -32,4 +36,21 @@ export class App {
       link: 'https://www.mysoftinn.com/hotel-channel-manager',
     },
   ];
+
+  // Contact form model values
+  modalName: string = '';
+  modalEmail: string = '';
+  modalMessage: string = '';
+
+  // Switch between tabs
+  setTab(tab: string) {
+    this.activeTab = tab;
+  }
+
+  // Handle form submission (data shown in modal)
+  submitForm(name: string, email: string, message: string) {
+    this.modalName = name;
+    this.modalEmail = email;
+    this.modalMessage = message;
+  }
 }
