@@ -77,10 +77,26 @@
 
     <!-- Submit Button -->
     <div class="text-center mt-2">
-      <button type="button" class="btn btn-success btn-sm" disabled>
-        Submit (Modal coming soon)
+      <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#contactModal">
+        Submit
       </button>
-
     </div>
   </form>
+</div>
+
+<!-- TODO Task 4: Modal to display submitted form values -->
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h6 class="modal-title" id="contactModalLabel">Thank you for contacting Softinn! We'll be in touch soon.</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Name:</strong> {{ modalName }}</p>
+        <p><strong>Email:</strong> {{ modalEmail }}</p>
+        <p><strong>Message:</strong> {{ modalMessage }}</p>
+      </div>
+    </div>
+  </div>
 </div>
